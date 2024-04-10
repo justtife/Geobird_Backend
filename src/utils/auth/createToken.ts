@@ -8,14 +8,13 @@ class Token {
         const user = this.tokenArg.user;
         return {
             userID: user.userID,
-            role: user.user_role!.roleID,
             firstname: user.firstname,
         }
     }
     public createJWT() {
         const token = sign(this.createTokenUser(), <string>config.JWT_SECRET, {
             // algorithm: "RS256",
-            issuer: `Interview-${config.APP_ENV}`,
+            issuer: `Geobird-${config.APP_ENV}`,
             subject: `${this.createTokenUser().userID}`,
             expiresIn: 60 * 60 * 24 * 30,
         })
